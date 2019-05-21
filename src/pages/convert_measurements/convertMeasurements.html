@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <ion-icon class="icon-color-blue" name="swap" item-left large></ion-icon>
+            Convert Measurements
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-item>
+        <ion-label>Measurement Type</ion-label>
+        <ion-select [(ngModel)]="selectedMeasurement" (ionChange)="changeMeasuremntType($event)">
+            <ion-option *ngFor="let measurementType of measurementTypes" [value]="measurementType">
+                {{measurementType.displayText}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+
+    <h4>Value to convert</h4>
+    <ion-item>
+        <ion-label color="primary" floating>Value to Convert</ion-label>
+        <ion-input
+            type="number"
+            [(ngModel)]="numberToConvert"
+            (ionChange)="changeConvertNumber($event)">
+        </ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>Unit of value</ion-label>
+        <ion-select [(ngModel)]="selectedFromMeasurement" (ionChange)="changeMeasuremnt($event)">
+            <ion-option *ngFor="let measurementType of selectedMeasurement.measurements" [value]="measurementType">
+                {{measurementType.displayText}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+
+    <h4>Value after convertion</h4>
+    <ion-item>
+        <ion-label>Unit to convert</ion-label>
+        <ion-select [(ngModel)]="selectedToMeasurement" (ionChange)="changeMeasuremnt($event)">
+            <ion-option *ngFor="let measurementType of selectedMeasurement.measurements" [value]="measurementType">
+                {{measurementType.displayText}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item>
+        <ion-label>Converted value : <span [innerHTML]="numberAfterConvert"></span></ion-label>
+    </ion-item>
+</ion-content>

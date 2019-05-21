@@ -1,0 +1,9 @@
+{
+  "name": "ConverterApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "id": "330dd1a9",
+  "app_id": ""
+}

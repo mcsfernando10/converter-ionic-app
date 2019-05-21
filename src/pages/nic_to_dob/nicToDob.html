@@ -1,0 +1,59 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <ion-icon class="icon-color-blue" name="stats" item-left large></ion-icon>
+            Details from NIC
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <h2>Find Details from NIC Number</h2>
+    <form [formGroup]="nicForm">
+        <ion-item class="remove-margin-left">
+            <ion-label floating>Enter NIC Number</ion-label>
+            <ion-input
+                formControlName="nicNo" required
+                [(ngModel)]="nicNo" (keyup)="onIdChange($event)">
+            </ion-input>
+        </ion-item>
+
+        <ion-toolbar>
+            <ion-segment
+                [(ngModel)]="oldOrNewIdType"
+                (ionChange)="oldNewIdTypeChange($event)"
+                formControlName="oldOrNewIdType" color="primary">
+                <ion-segment-button value="old">
+                    Old Identity Card
+                </ion-segment-button>
+                <ion-segment-button value="new">
+                    New Identity Card
+                </ion-segment-button>
+            </ion-segment>
+        </ion-toolbar>
+
+        <p *ngIf="!nicForm.controls.nicNo.valid && isUserStartTyping" class="validator-text text-bold text-color-red">
+            Please provide a valid NIC number
+        </p>
+    </form>
+    <ion-list *ngIf="isDataVisible" padding>
+        <ion-item-divider color="light">Details of NIC No: {{nicNo}}</ion-item-divider>
+        <ion-item>
+            <ion-item>
+                <ion-icon class="icon-color-blue" name="calendar" item-left large></ion-icon>
+                <h2 class="text-bold" text-wrap>{{birthday}}</h2>
+                <p class="text-color-grey">Birthday</p>
+            </ion-item>
+            <ion-item>
+                <ion-icon class="icon-color-blue" [name]="gendarIcon" item-left large></ion-icon>
+                <h2 class="text-bold" text-wrap>{{gender}}</h2>
+                <p class="text-color-grey">Gender</p>
+            </ion-item>
+            <ion-item *ngIf="eligible !== ''">
+                <ion-icon class="icon-color-blue" name="cube" item-left large></ion-icon>
+                <h2 class="text-bold" text-wrap>{{eligible}}</h2>
+                <p class="text-color-grey">Eligible to Vote</p>
+            </ion-item>
+        </ion-item>
+    </ion-list>
+</ion-content>
